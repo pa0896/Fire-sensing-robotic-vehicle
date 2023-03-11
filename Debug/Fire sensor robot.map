@@ -1,17 +1,17 @@
 ******************************************************************************
                   TI ARM Linker Unix v20.2.7                   
 ******************************************************************************
->> Linked Thu Mar  9 12:55:12 2023
+>> Linked Sat Mar 11 13:34:02 2023
 
 OUTPUT FILE NAME:   <Fire sensor robot.out>
-ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 00000621
+ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 0000062d
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  00000662  0003f99e  R  X
+  FLASH                 00000000   00040000  0000066e  0003f992  R  X
   SRAM                  20000000   00008000  00000200  00007e00  RW X
 
 
@@ -19,9 +19,9 @@ SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    00000662   00000662    r-x
+00000000    00000000    0000066e   0000066e    r-x
   00000000    00000000    0000026c   0000026c    r-- .intvecs
-  0000026c    0000026c    000003f6   000003f6    r-x .text
+  0000026c    0000026c    00000402   00000402    r-x .text
 20000000    20000000    00000200   00000000    rw-
   20000000    20000000    00000200   00000000    rw- .stack
 
@@ -34,12 +34,12 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    0000026c     
                   00000000    0000026c     tm4c123gh6pge_startup_ccs.obj (.intvecs)
 
-.text      0    0000026c    000003f6     
-                  0000026c    000003b4     main.obj (.text)
-                  00000620    0000002c     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noinit_noargs:_c_int00_noinit_noargs)
-                  0000064c    0000000e     tm4c123gh6pge_startup_ccs.obj (.text)
-                  0000065a    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
-                  0000065e    00000004                                   : exit.c.obj (.text:abort:abort)
+.text      0    0000026c    00000402     
+                  0000026c    000003c0     main.obj (.text)
+                  0000062c    0000002c     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noinit_noargs:_c_int00_noinit_noargs)
+                  00000658    0000000e     tm4c123gh6pge_startup_ccs.obj (.text)
+                  00000666    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  0000066a    00000004                                   : exit.c.obj (.text:abort:abort)
 
 .cinit     0    00000000    00000000     UNINITIALIZED
 
@@ -58,10 +58,10 @@ MODULE SUMMARY
        Module                          code   ro data   rw data
        ------                          ----   -------   -------
     ./
-       main.obj                        948    0         0      
+       main.obj                        960    0         0      
        tm4c123gh6pge_startup_ccs.obj   14     620       0      
     +--+-------------------------------+------+---------+---------+
-       Total:                          962    620       0      
+       Total:                          974    620       0      
                                                                
     /home/kreisch/ti/ccs1210/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
        boot_cortex_m.c.obj             44     0         0      
@@ -72,16 +72,16 @@ MODULE SUMMARY
                                                                
        Stack:                          0      0         512    
     +--+-------------------------------+------+---------+---------+
-       Grand Total:                    1014   620       512    
+       Grand Total:                    1026   620       512    
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
 
 address   name                   
 -------   ----                   
-0000065f  C$$EXIT                
-0000064d  ResetISR               
-00000659  SysTickHandler         
+0000066b  C$$EXIT                
+00000659  ResetISR               
+00000665  SysTickHandler         
 00000479  Systick_Init           
 20000200  __STACK_END            
 00000200  __STACK_SIZE           
@@ -96,9 +96,9 @@ UNDEFED   __mpu_init
 20000000  __stack                
 20000000  __start___llvm_prf_cnts
 20000000  __stop___llvm_prf_cnts 
-00000621  _c_int00_noinit_noargs 
-0000065b  _system_pre_init       
-0000065f  abort                  
+0000062d  _c_int00_noinit_noargs 
+00000667  _system_pre_init       
+0000066b  abort                  
 ffffffff  binit                  
 00000000  g_pfnVectors           
 00000529  main                   
@@ -127,12 +127,12 @@ address   name
 000004a7  signal                 
 0000050d  measure_distance       
 00000529  main                   
-00000621  _c_int00_noinit_noargs 
-0000064d  ResetISR               
-00000659  SysTickHandler         
-0000065b  _system_pre_init       
-0000065f  C$$EXIT                
-0000065f  abort                  
+0000062d  _c_int00_noinit_noargs 
+00000659  ResetISR               
+00000665  SysTickHandler         
+00000667  _system_pre_init       
+0000066b  C$$EXIT                
+0000066b  abort                  
 20000000  __stack                
 20000000  __start___llvm_prf_cnts
 20000000  __stop___llvm_prf_cnts 

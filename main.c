@@ -4,9 +4,9 @@
  * the comparator and the generator differentiates the two
  * use CMPB for PB7 and CMPA for PB6
  */
+// check the enable pins of the motor driver with the led before connecting them to pwm
 //PA2 is the trigger pin and PB4 is the echo pin
-// use PA5 and PA6 as the enable pins of L298N motor driver
-//TIMER B is 16 bit and TIMER A is 32 bit -- REVERSE
+// use PA4,PA5 and PA6 and PA7 as IN1, IN2, IN3, IN4 pins of the microcontroller
 
 //use better variable names
 
@@ -29,13 +29,10 @@ void portA_init(void){
 	while((SYSCTL_PRGPIO_R&0x00000001)	==	0){
 		//wait for Port A clock to be stabilised
 	};
-	GPIO_PORTA_DIR_R	|=	 0x00000064;		// PA2,PA5,PA6 output
-	GPIO_PORTA_DIR_R	&=	~0x00000008;		// PA3 input
-	GPIO_PORTA_DIR_R	|=	 0x00000010;		// PA4 output------ remove
-	GPIO_PORTA_DEN_R	|=	 0x0000006C;		// make PA2, PA3, PA5, PA6 digital
-	GPIO_PORTA_DEN_R	|=	 0x00000010;		// PA4 digital----- remove
-	GPIO_PORTA_AMSEL_R	&=	~0x0000006C;		// disable analog function on all the 4 pins
-	GPIO_PORTA_AFSEL_R	&=	~0x0000006C;		// disable alternate function on PA2, PA3, PA5, PA6 because they are general purpose
+	GPIO_PORTA_DIR_R	|=	 0x000000F4;		// PA2,PA4,PA5,PA6,PA7 output
+	GPIO_PORTA_DEN_R	|=	 0x000000F4;		// make PA2, PA4, PA5, PA6, PA7 digital
+	GPIO_PORTA_AMSEL_R	&=	~0x000000F4;		// disable analog function on all the 5 pins
+	GPIO_PORTA_AFSEL_R	&=	~0x000000F4;		// disable alternate function all the 5 pins because they are general purpose
 	GPIO_PORTA_PCTL_R	 =	 0x00000000;		// no special function required
 }
 
@@ -46,10 +43,10 @@ void portB_init(){
 		//wait for Port B clock to be stabilised
 	};
 	GPIO_PORTB_DIR_R	|=	 0x000000C0;		// PB6 and PB7 output
-	GPIO_PORTB_DIR_R	&=	~0x00000020;		// PB5 input
-	GPIO_PORTB_DEN_R	|=	 0x000000E0;		// make PB5, PB6 and PB7 digital pins
-	GPIO_PORTB_AMSEL_R	&=	~0x000000E0;	    // disable analog function on all the pins
-	GPIO_PORTB_AFSEL_R	|=	 0x000000C0;		// enable alternate function on the pins PB6 and PB7
+	GPIO_PORTB_DIR_R	&=	~0x00000030;		// PB5, PB4 input
+	GPIO_PORTB_DEN_R	|=	 0x000000F0;		// make PB4,PB5, PB6 and PB7 digital pins
+	GPIO_PORTB_AMSEL_R	&=	~0x000000F0;	    // disable analog function on all the pins
+	GPIO_PORTB_AFSEL_R	|=	 0x000000D0;		// enable alternate function on the pins PB4, PB6 and PB7
 	GPIO_PORTB_AFSEL_R	&=	~0x00000020;		// disable alternate function on PB5
 	GPIO_PORTB_PCTL_R	 =   0x44070000;		// insert value 4 to get PWM functionality on the pins PB6 and PB7 and value 7 to get timer capture functionality for PB4
 }
